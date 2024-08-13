@@ -2,7 +2,7 @@ from src.modules.apis.openai import completions
 
 
 class BattleGenerator:
-    def generate(player_one: str, player_two: str, scenery: str) -> str:
+    def generate(self, player_one: str, player_two: str, scenery: str) -> str:
 
         AI_PROMPT = """
             Você é um narrador de histórias curtas e mirabolantes, com foco em batalhas
