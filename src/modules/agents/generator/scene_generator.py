@@ -1,7 +1,7 @@
 from src.modules.apis.openai import completions
 
 
-class CenaryGenerator:
+class SceneGenerator:
     def generate(player_one: str, player_two: str) -> str:
         AI_PROMPT = """
             Crie um cenario de confronto baseado no seguinte input:
