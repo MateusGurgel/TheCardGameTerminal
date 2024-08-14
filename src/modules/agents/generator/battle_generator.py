@@ -1,4 +1,12 @@
-from src.modules.apis.openai import completions
+from pydantic import BaseModel
+
+from src.modules.apis.openai import structured_completion
+
+
+class BattleResponse(BaseModel):
+    battle: str
+    player_one_won: bool
+    player_two_won: bool
 
 
 class BattleGenerator:
@@ -23,6 +31,12 @@ class BattleGenerator:
             *Carta do Jogador 2: outra descrição de um personagem fictício com forças e fraquezas.
             *Carta de Cenário: o ambiente onde os personagens se enfrentarão.
 
+            Voce retornará:
+
+            battle: toda a história da batalha
+            player_one_won: se o jogador 1 venceu
+            player_two_won: se o jogador 2 venceu
+            
             Com base nessas informações, você deve criar uma história envolvente
             e violentamente intensa, onde as características dos personagens e o
             cenário se combinam de forma surpreendente, mantendo coerência dentro
@@ -35,4 +49,6 @@ class BattleGenerator:
             Carta de cenário: {scenery}
         """
 
-        return completions(input, AI_PROMPT)
+        return structured_completion(
+            input, AI_PROMPT, BattleResponse, model="gpt-4o-2024-08-06"
+        )
